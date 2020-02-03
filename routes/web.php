@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/excel', 'ExcelController@show_table');
+Route::get('/excel/export', 'ExcelController@export')->name('excel.export');
+
+// Route::get('/excel/export', 'ExcelController@import')->name('excel.import');
+Route::post('/excel/export', 'ExcelController@import')->name('excel.import');
+

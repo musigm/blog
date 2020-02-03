@@ -5,19 +5,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
+                <div class="card-header">import excel</div>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
                     <div>
-                        <form action="import.php" method="post" enctype="multipart/form-data">
-                        <label for="file">文件名：</label>
-                        <input type="file" name="file" id="file"><br>
-                        <input type="submit" name="submit" value="提交">
+                        <form action="{{ route('excel.import') }}" method="POST" align="center" enctype="multipart/form-data">
+                            @csrf
+                            <label>文件名：</label>
+                            <input type="file" name="file">
+                            <button type="submit" class="btn btn-success">import to Excel</button>
                         </form>
                     </div>
                 </div>
