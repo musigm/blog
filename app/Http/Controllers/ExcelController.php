@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\excelExport; //匯出
 use App\Imports\excelImport; //匯入
 
+//優化：上傳進度條、大量檔案上傳問題
 
 class ExcelController extends Controller
 {
@@ -17,7 +18,7 @@ class ExcelController extends Controller
     public function show_table()
     {
         $table = 'product_lookup_lists';
-        $lists = DB::table($table)->get();
+        $lists = DB::table($table)->paginate(100);
         return view('/excel',compact('lists'));
     }
 
@@ -29,15 +30,12 @@ class ExcelController extends Controller
     public function import(Request $request)
     {
         // dd($request);
-        $request->validate(['file' => 'required|mimes:xlsx,csv|max:2048',]);
+        // $request->validate(['file' => 'required|mimes:xlsx,csv|max:2048',]);
+        $request->validate(['file' => 'required|mimes:xlsx,csv',]);
+
         // $fileName = time().$request->file->getClientOriginalName();
-
-
         // $request->file->move(public_path('uploads'), $fileName);
-        // dd($request->file);
-        // dd(Excel::toArray(new excelImport,$request->file));
-        // Excel::toArray(new excelImport,$request->file);
-        (Excel::import(new excelImport,$request->file));
+        Excel::import(new excelImport,$request->file);
         return redirect('/excel');
         // dd('OK');
 

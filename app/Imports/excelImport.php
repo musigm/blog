@@ -16,6 +16,7 @@ class excelImport implements ToModel,WithHeadingRow
     */
     public function model(array $row)
     {
+        // dd($row);
         foreach ($row as $key => $value) {
             if ($value == null){
                 $row[$key] = '';

@@ -2,28 +2,30 @@
 
 @section('content')
 <div class="container">
-
-    <h3 align="center">Export Data to Excel in Laravel using Maatwebsite</h3><br />
-    <form action="{{ route('excel.import') }}" method="POST" align="center" enctype="multipart/form-data">
-        @csrf
-        <label>文件名：</label>
-        <input type="file" name="file">
-        <button type="submit" class="btn btn-success">import to Excel</button>
-        <a href="{{ route('excel.export') }}" class="btn btn-success">Export to Excel</a>
-    </form>
-    <p></p>
+    <h3>Export Data to Excel in Laravel using Maatwebsite</h3><br />
     <div class="row justify-content-center">
-        <table class="table table-striped table-bordered">
-            <tr>
-                <td>Product_lookup</td>
-                <td>Notes</td>
-                <td>Product_ID</td>
-                <td>Lot_ID</td>
-                <td>Packing</td>
-                <td>Stores</td>
-                <td>Description</td>
-                <td>Mfg_product_ID</td>
-            </tr>
+        <form action="{{ route('excel.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <label>文件名：</label>
+            <input type="file" name="file">
+            <button type="submit" class="btn btn-success">import to Excel</button>
+            <a href="{{ route('excel.export') }}" class="btn btn-success">Export to Excel</a>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Product_lookup</th>
+                    <th scope="col">Notes</th>
+                    <th scope="col">Product_ID</th>
+                    <th scope="col">Lot_ID</th>
+                    <th scope="col">Packing</th>
+                    <th scope="col">Stores</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Mfg_product_ID</th>
+                </tr>
+            </thead>
             @foreach ($lists as $list)
             <tr>
                 <td>{{$list ->Product_lookup}}</td>
@@ -37,6 +39,7 @@
             </tr>
             @endforeach
         </table>
+        {{ $lists->links() }}
     </div>
 </div>
 @endsection
