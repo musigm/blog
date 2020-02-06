@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\User;
+
 class CreateUsersTable extends Migration
 {
     /**
@@ -15,6 +17,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('role')->default(User::ROLE_USER);
             $table->string('username');
             $table->string('position');
             $table->string('department');
