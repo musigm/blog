@@ -17,10 +17,18 @@ class ExcelController extends Controller
     //顯示表單
     public function show_table()
     {
-        $table = 'product_lookup_lists';
-        // $lists = DB::table($table)->paginate(5);
-        $lists = DB::table($table)->paginate(10);
+        $alists = DB::table('product_lookup_lists')->paginate(50);
+        return view('/excel',compact('alists'));
+    }
+
+    public function search(Request $request)
+    {
+        $field = $request->field;
+        $keyword = $request->keyword;
+        $lists = DB::table('product_lookup_lists')->where($field, 'like', '%' . $keyword . '%')->paginate(50);
+        // dd($lists);
         return view('/excel',compact('lists'));
+
     }
 
     public function export_all()
@@ -49,7 +57,5 @@ class ExcelController extends Controller
         // $request->file->move(public_path('uploads'), $fileName);
         Excel::import(new excelImport,$request->file);
         return redirect('/excel');
-        // dd('OK');
-
     }
 }
