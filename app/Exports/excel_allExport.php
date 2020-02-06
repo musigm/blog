@@ -3,33 +3,24 @@
 namespace App\Exports;
 
 use App\product_lookup_lists;
-use Maatwebsite\Excel\Concerns\FromArray;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize; //自動調整欄位寬度
 use Maatwebsite\Excel\Concerns\WithHeadings; //表頭
 
-class excelExport implements FromArray,WithHeadings ,ShouldAutoSize
+class excel_allExport implements FromCollection ,WithHeadings ,ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    protected $product_lookup_lists;
-
-    public function __construct(array $product_lookup_lists)
+    public function collection()
     {
-        $this->product_lookup_lists = $product_lookup_lists;
-    }
-
-    public function Array(): array
-    {
-        dd($this->product_lookup_lists);
-        return $this->product_lookup_lists;
+        return product_lookup_lists::all();
     }
 
     // 表頭
     public function headings(): array
     {
         return [
-            '',
             'Product_ID',
             'Lookup',
             'Description',

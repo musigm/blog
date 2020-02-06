@@ -19,9 +19,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//匯入匯出
 Route::get('/excel', 'ExcelController@show_table');
-Route::get('/excel/export', 'ExcelController@export')->name('excel.export');
+Route::get('/excel/export/all', 'ExcelController@export_all')->name('excel.export.all');
+// Route::get('/excel/export', 'ExcelController@export')->name('excel.export');
+Route::post('/excel/export', 'ExcelController@export')->name('excel.export');
 
-// Route::get('/excel/export', 'ExcelController@import')->name('excel.import');
-Route::post('/excel/export', 'ExcelController@import')->name('excel.import');
 
+Route::post('/excel/import', 'ExcelController@import')->name('excel.import');
+
+Route::get('/administrative' ,'UserController@show_table');
+// Route::get('/administrative' ,'UserController@boot');
+// 只有系統管理者可以執行
+// Route::get('/someAction', 'MyController@someAction') -> middleware('can:admin');

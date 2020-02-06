@@ -24,14 +24,14 @@ class excelImport implements ToModel,WithHeadingRow
         }
 
         return new product_lookup_lists([
-            'Product_lookup'=>$row['product_lookup'],
-            'Notes'=>$row['notes'] ,
             'Product_ID'=>$row['product_id'],
-            'Lot_ID'=>$row['lot_id'],
-            'Packing'=>$row['packing'],
-            'Stores'=>$row['stores'],
+            'Lookup'=>$row['lookup'] ,
             'Description'=>$row['description'],
-            'Mfg_product_ID'=>$row['mfg_product_id']
+            'Quantity'=>$row['quantity'],
+            'Style_Name'=>$row['style_name'],
+            'ColorParentSku'=>$row['colorparentsku'],
+            'Last_updated'=>$row['last_updated'],
+            'Stores'=>$row['stores']
          ]);
     }
 }

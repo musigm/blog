@@ -15,14 +15,15 @@ class CreateProductLookupListsTable extends Migration
     public function up()
     {
         Schema::create('product_lookup_lists', function (Blueprint $table) {
-            $table->string('Product_lookup');
-            $table->string('Notes');
+            $table->bigIncrements('id');
             $table->string('Product_ID');
-            $table->string('Lot_ID');
-            $table->string('Packing');
-            $table->string('Stores');
+            $table->string('Lookup');
             $table->string('Description');
-            $table->string('Mfg_product_ID');
+            $table->string('Quantity');
+            $table->string('Style_Name');
+            $table->string('ColorParentSku');
+            $table->string('Last_updated');
+            $table->string('Stores');
             // $table->bigIncrements('id');
             // $table->timestamps();
         });

@@ -13,6 +13,6 @@ class product_lookup_lists extends Model
      * @var array
      */
     protected $fillable = [
-        'Product_lookup','Notes','Product_ID','Lot_ID','Packing','Stores','Description','Mfg_product_ID'
+        'Product_ID','Lookup','Description','Quantity','Style_Name','ColorParentSku','Last_updated','Stores'
     ];
 }

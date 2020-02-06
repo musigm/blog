@@ -18,13 +18,25 @@ class ExcelController extends Controller
     public function show_table()
     {
         $table = 'product_lookup_lists';
-        $lists = DB::table($table)->paginate(100);
+        // $lists = DB::table($table)->paginate(5);
+        $lists = DB::table($table)->paginate(10);
         return view('/excel',compact('lists'));
     }
 
-    public function export()
+    public function export_all()
     {
-        return Excel::download(new excelExport, 'product lookup lists.xlsx');
+        return Excel::download(new excel_allExport, 'product lookup lists.xlsx');
+    }
+
+    public function export(Request $request )
+    {
+        $id_count = DB::table('product_lookup_lists')->whereIn('id',$request->checkbox)->get();
+        foreach ($id_count as $id_data)
+        {
+            $data[] = $id_data;
+        }
+        $export = new excelExport($data);
+        return Excel::download($export, 'product lookup lists.xlsx');
     }
 
     public function import(Request $request)

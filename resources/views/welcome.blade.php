@@ -3,12 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>Vision Shoes</title>
-
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
         <!-- Styles -->
         <style>
             html, body {
@@ -57,7 +54,6 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -69,12 +65,10 @@
                 <div class="title m-b-md">
                     Vision Shoes
                 </div>
-
                 @if (Route::has('login'))
                 <div class="links"  >
                     @auth
-                        <a href="{{ url('/excel') }}">excel</a>
-                        {{-- <a href="{{ url('/home') }}">Home</a> --}}
+                        <a href="{{ url('/home') }}">home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
