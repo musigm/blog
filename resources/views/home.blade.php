@@ -14,8 +14,9 @@
                         <div class='align-self-center'></div>
                         <br>
                         <a href="{{ url('/excel') }}" class="btn btn-secondary" role="button">Excel</a>
+                        @if(Auth::user()->role == 'admin')
                         <a href="{{ url('/administrative') }}"class="btn btn-secondary" role="button">Administrative</a>
-                        </form>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Auth;
-
+use App\User;
 use DB;
 
 class UserController extends Controller
@@ -21,6 +21,17 @@ class UserController extends Controller
         return view('/administrative',compact('tables'));
     }
 
+    public function modify(Request $request)
+    {
+        $role = $request->role;
+        $id = $request->id;
+
+        $user = User::find((int)$id);
+        $user->role =$role;
+        $user->save();
+
+        return Redirect('/administrative');
+    }
 
 
     //判斷使用者權限
