@@ -21,7 +21,6 @@ class excelExport implements FromArray,WithHeadings ,ShouldAutoSize
 
     public function Array(): array
     {
-        dd($this->product_lookup_lists);
         return $this->product_lookup_lists;
     }
 
