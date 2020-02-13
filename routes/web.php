@@ -19,15 +19,22 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//匯入匯出
+// 顯示表單
 Route::get('/excel', 'ExcelController@show_table');
+Route::get('/get_data', 'ExcelController@get_data')->name('get_data');;
+
+//excel匯入匯出
 Route::get('/excel/export/all', 'ExcelController@export_all')->name('excel.export.all');
 Route::post('/excel/export', 'ExcelController@export')->name('excel.export');
 Route::post('/excel/import', 'ExcelController@import')->name('excel.import');
-Route::post('/excel/search', 'ExcelController@search')->name('excel.search');
+// 搜尋
+// Route::post('/excel/search', 'ExcelController@search')->name('excel.search');
 
+//權限管理
 Route::get('/administrative' ,'UserController@show_table');
 Route::post('/administrative/modify', 'UserController@modify')->name('user.role');
+
+
 // Route::get('/administrative' ,'UserController@boot');
 // 只有系統管理者可以執行
 // Route::get('/someAction', 'MyController@someAction') -> middleware('can:admin');
