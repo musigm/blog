@@ -15,14 +15,6 @@ use App\Imports\excelImport; //匯入
 
 class ExcelController extends Controller
 {
-    // 顯示表單
-    // public function show()
-    // {
-    //     $tables = DB::table('product_lookup_lists');
-
-    //     return Datatables::of($tables)->make(true);
-    // }
-
     public function get_data()
     {
         $data_table = DB::table('product_lookup_lists');
@@ -71,11 +63,16 @@ class ExcelController extends Controller
     {
         // dd($request);
         // $request->validate(['file' => 'required|mimes:xlsx,csv|max:2048',]);
-        $request->validate(['file' => 'required|mimes:xlsx,csv',]);
 
-        // $fileName = time().$request->file->getClientOriginalName();
-        // $request->file->move(public_path('uploads'), $fileName);
-        Excel::import(new excelImport,$request->file);
+        Validator::make($request->all(), [
+            'file' => 'required|mimes:xlsx,csv'
+        ])->validate();
+
+        if($request->hasFile('file'))
+        {
+            Excel::import(new excelImport,$request->file('file'));
+        }
+
         return redirect('/excel');
     }
 }
