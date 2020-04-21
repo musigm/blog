@@ -19,14 +19,22 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
 // 顯示表單
 Route::get('/excel', 'ExcelController@show_table');
 Route::get('/get_data', 'ExcelController@get_data')->name('get_data');;
+Route::get('/get_amazon', 'PlatformController@get_amazon')->name('get_amazon');;
 
 //excel匯入匯出
 Route::get('/excel/export/all', 'ExcelController@export_all')->name('excel.export.all');
 Route::post('/excel/export', 'ExcelController@export')->name('excel.export');
 Route::post('/excel/import', 'ExcelController@import')->name('excel.import');
+
+// 平台
+Route::post('/importdata/import', 'PlatformController@import')->name('platform.import');
+Route::get('/importdata', 'PlatformController@show');
+
 // 搜尋
 // Route::post('/excel/search', 'ExcelController@search')->name('excel.search');
 
