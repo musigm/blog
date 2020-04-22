@@ -34,12 +34,13 @@ class PlatformController extends Controller
     {
         $platform = $request->platform;
         Validator::make($request->all(), [
-            'file' => 'required|mimes:xlsx,csv'
+            'file' => 'required|mimes:xlsx,csv,txt'
         ])->validate();
 
         if($request->hasFile('file'))
         {
             if ($platform == "Amazon"){
+                dd('123');
                 Excel::import(new amazonImport,$request->file('file'));
             }
             elseif($platform == "eBay"){

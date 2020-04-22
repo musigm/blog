@@ -65,7 +65,7 @@ class ExcelController extends Controller
         // $request->validate(['file' => 'required|mimes:xlsx,csv|max:2048',]);
 
         Validator::make($request->all(), [
-            'file' => 'required|mimes:xlsx,csv'
+            'file' => 'required|mimes:xlsx,csv,txt'
         ])->validate();
 
         if($request->hasFile('file'))
