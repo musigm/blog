@@ -2,12 +2,12 @@
 @section('content')
 <div class="container">
     <h3>Product Data List</h3><br />
-    <div class="col-5">
+    <div class="col-7">
         <form action="{{ route('excel.import') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <label>文件名：</label>
             <input type="file" name="file">
-            <br>
+            {{-- <br> --}}
             <button type="submit" class="btn btn-success">Import</button>
             <a href="{{ route('excel.export.all') }}" class="btn btn-success">Export All</a>
         </form>
