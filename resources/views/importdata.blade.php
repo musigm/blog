@@ -2,18 +2,24 @@
 @section('content')
 <div class="container">
     <h3>Import Data</h3><br />
-    <div class="col-5">
+    <div class="col-7">
         <form action="{{ route('platform.import') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <label>文件名：</label>
+            <label>匯入平台：</label>
+            <select name="platform">
+            {{-- <select name="searchType" value="全部類別"> --}}
+                <option>Amazon</option>
+                <option>eBay</option>
+                <option >Cammy</option>
+            </select>
+            <label>&emsp;文件：</label>
             <input type="file" name="file">
-            <br>
             <button type="submit" class="btn btn-success">Import</button>
             {{-- <a href="{{ route('excel.export.all') }}" class="btn btn-success">Export All</a> --}}
         </form>
     </div>
     <br>
-    <div>
+    <div class="table-responsive">
         <table class="table table-striped" id="table">
            <thead>
               <tr>

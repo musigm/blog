@@ -32,15 +32,22 @@ class PlatformController extends Controller
 
     public function import(Request $request)
     {
-        // $request->validate(['file' => 'required|mimes:xlsx,csv|max:2048',]);
+        $platform = $request->platform;
         Validator::make($request->all(), [
             'file' => 'required|mimes:xlsx,csv'
         ])->validate();
 
-
         if($request->hasFile('file'))
         {
-            Excel::import(new amazonImport,$request->file('file'));
+            if ($platform == "Amazon"){
+                Excel::import(new amazonImport,$request->file('file'));
+            }
+            elseif($platform == "eBay"){
+                dd('目前無法匯入');
+            }
+            elseif($platform == "Cammy"){
+                dd('目前無法匯入');
+            }
         }
 
         return redirect('/importdata');
