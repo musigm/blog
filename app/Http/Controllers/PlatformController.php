@@ -40,7 +40,6 @@ class PlatformController extends Controller
         if($request->hasFile('file'))
         {
             if ($platform == "Amazon"){
-                dd('123');
                 Excel::import(new amazonImport,$request->file('file'));
             }
             elseif($platform == "eBay"){
